@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>产品编辑</title>
+    <link rel="stylesheet" th:href="@{/layuimini/lib/layui-v2.5.5/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuimini/lib/jq-module/zyupload/zyupload-1.0.0.min.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuimini/css/public.css}" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+   <div class="layuimini-main">
+       <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">标题：</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">类型</label>
+            <div class="layui-input-block">
+                <input type="checkbox" value="1" name="product" title="产品" lay-skin="primary" checked>
+                <input type="checkbox" value="2" name="patents" title="专利" lay-skin="primary">
+                <input type="checkbox" value="3" name="soultion" title="解决方案" lay-skin="primary">
+                <input type="checkbox" value="4" name="case" title="成功案例" lay-skin="primary">
+
+            </div>
+        </div>
+           <div class="layui-form-item">
+               <label class="layui-form-label">上传图片：</label>
+           <div class="layui-upload-drag" id="test10">
+               <i class="layui-icon"></i>
+               <p>点击上传预览图</p>
+               <div class="layui-hide" id="uploadDemoView">
+                   <hr>
+                   <img src="" alt="上传成功后渲染" style="max-width: 196px">
+               </div>
+           </div>
+       </div>
+           <br/><br/>
+           <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">内容简介：</label>
+            <div class="layui-input-block">
+                <textarea name="desc" placeholder="请输入内容简介" class="layui-textarea"></textarea>
+            </div>
+        </div>
+           <div class="layui-form-item">
+               <label class="layui-form-label">内容编辑：</label>
+               <div class="layui-input-block">
+                   <textarea id="edit" lay-verify="content0" style="display: none;"></textarea>
+               </div>
+           </div>
+
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="tijiao">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary" >重置</button>
+            </div>
+       </form>
+   </div>
+</div>
+<script th:src="@{/layuimini/lib/jquery-3.4.1/jquery-3.4.1.min.js}" charset="utf-8"></script>
+<script th:src="@{/layuimini/lib/layui-v2.5.5/layui.js}" charset="utf-8"></script>
+<script th:src="@{/layuimini/lib/jq-module/zyupload/zyupload-1.0.0.min.js}" charset="utf-8"></script>
+<script type="text/javascript">
+    layui.use(['form', 'layedit','upload','jquery','layer'], function () {
+
+        var $=layui.jquery
+        var form=layui.form
+        var upload = layui.upload;
+        var layedit = layui.layedit;
+        var num=10
+        upload.render({
+            elem: '#test10'
+            ,url: '/upload_image' //改成您自己的上传接口
+            ,done: function(res){
+                $('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', '/layuimini/image_out/'+res.imagefile_path);
+            }
+        });
+
+        layedit.set({
+            uploadImage: {
+                url: '/article_image' //接口url
+                ,type: 'post' //默认post
+            }
+        });
+        var index=layedit.build('edit'); //建立编辑器
+
+        form.verify({
+            content0:function (value) {
+                layedit.sync(index)
+            }
+
+        })
+
+
+
+
+
+        form.on("submit(tijiao)",function (datas) {
+            var text = layedit.getContent(index)
+            var src=$('#uploadDemoView').find("img").attr("src");
+
+            data=datas.field;
+            if(data.product==1){
+                $.ajax({
+                    url :"/content/product",
+                    type: "post",
+                    dataType:"json",
+                    data:{
+                        product_name: data.title,
+                        product_brief: data.desc,
+                        product_image: src,
+                        product_content: text
+
+                    },
+                    success :function (dat) {
+                    if( dat.statecode == 200 ){
+                        if(num==0){
+                        layer.msg('添加成功', {
+                            icon: 1,
+                            time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                        }, function(){
+                            history.go(0);
+                        })
+                        num=100;
+                    }}
+                    }
+                })
+            }
+
+           if(data.patents==2){
+               $.ajax({
+                   url :"/content/patents",
+                   type: "post",
+                   dataType:"json",
+                   data:{
+                       patents_name: data.title,
+                       patents_brief: data.desc,
+                       patents_image: src,
+                       patents_content: text
+                   },
+                   success:function (dat) {
+                       if(dat.statecode==200){
+                           if(num==0){
+                               layer.msg('添加成功', {
+                                   icon: 1,
+                                   time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                               }, function(){
+                                   history.go(0);
+                               })
+                               num=100;
+                           }
+
+                       }
+                   }})
+           }
+
+            if(data.soultion==3){
+                $.ajax({
+                    url :"/content/solution",
+                    type: "post",
+                    dataType:"json",
+                    data:{
+                        solution_name: data.title,
+                        solution_brief: data.desc,
+                        solution_image: src,
+                        solution_content: text},
+                    success:function (dat) {
+                        if(dat.statecode==200){
+                            if(num==0){
+                                layer.msg('添加成功', {
+                                    icon: 1,
+                                    time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                                }, function(){
+
+                                    history.go(0);
+                                })
+                                num=100;
+                            }
+
+                        }
+                    }})
+            }
+
+
+            if(data.case==4){
+                $.ajax({
+                    url :"/content/case",
+                    type: "post",
+                    dataType:"json",
+                    data:{
+                        case_name: data.title,
+                        case_brief: data.desc,
+                        case_image: src,
+                        case_content: text
+                    },
+                    success:function (dat) {
+                        if(dat.statecode==200){
+                            if(num==0){
+                                layer.msg('添加成功', {
+                                    icon: 1,
+                                    time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                                }, function(){
+
+                                    history.go(0);
+                                })
+                                num=100;
+                            }
+                        }
+                    }})
+            }
+
+        })
+    });
+</script>
+</body>
+</html>

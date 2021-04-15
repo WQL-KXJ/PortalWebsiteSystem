@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>修改密码</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layuimini/lib/layui-v2.5.5/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuimini/lib/jq-module/zyupload/zyupload-1.0.0.min.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuimini/css/public.css}" media="all">
+</head>
+
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <form class="layui-form" lay-filter="wql_fq" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">公司电话：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="phone" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">公司地址：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="place" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">公司封面：</label>
+                <div class="layui-upload-drag" id="test10">
+                    <i class="layui-icon"></i>
+                    <p>点击上传预览图</p>
+                    <div class="layui-hide" id="uploadDemoView">
+                        <hr>
+                        <img src="" alt="上传成功后渲染" style="max-width: 196px">
+                    </div>
+                </div>
+            </div>
+            <br/><br/>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">公司简介：</label>
+                <div class="layui-input-block">
+                    <textarea name="desc" placeholder="请输入内容简介" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">详细介绍：</label>
+                <div class="layui-input-block">
+                    <textarea id="edit" lay-verify="content0" style="display: none;"></textarea>
+                </div>
+            </div>
+
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="tijiao">提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary" >重置</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script th:src="@{/layuimini/lib/jquery-3.4.1/jquery-3.4.1.min.js}" charset="utf-8"></script>
+<script th:src="@{/layuimini/lib/layui-v2.5.5/layui.js}" charset="utf-8"></script>
+<script th:src="@{/layuimini/lib/jq-module/zyupload/zyupload-1.0.0.min.js}" charset="utf-8"></script>
+<script type="text/javascript">
+    layui.use(['form', 'layedit','upload','jquery','layer'], function () {
+
+        var $=layui.jquery
+        var form=layui.form
+        var upload = layui.upload;
+        var layedit = layui.layedit;
+
+        upload.render({
+            elem: '#test10'
+            ,url: '/upload_image' //改成您自己的上传接口
+            ,done: function(res){
+                $('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', '/layuimini/image_out/'+res.imagefile_path);
+            }
+        });
+
+        layedit.set({
+            uploadImage: {
+                url: '/article_image' //接口url
+                ,type: 'post' //默认post
+            }
+        });
+        var index=layedit.build('edit'); //建立编辑器
+
+        form.verify({
+            content0:function (value) {
+                layedit.sync(index)}})
+
+
+        $(document).ready(function(){
+            $.ajax({
+                url: "/select_company",
+                type: "post",
+                dataType: "json",
+                data: {},
+                success: function (datas) {
+                    $('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', datas.company_image);
+                    form.val("wql_fq", {
+                        "phone": datas.company_phone
+                        , "place": datas.company_place
+                        , "desc": datas.company_intro
+                    })}})})
+
+        form.on("submit(tijiao)",function (datas) {
+            var text = layedit.getContent(index)
+            var src=$('#uploadDemoView').find("img").attr("src");
+            data_wql=datas.field;
+            $.ajax({
+                url: "/update_company",
+                type:"post",
+                dataType: "json",
+                data:{
+                    company_phone:data_wql.phone,
+                    company_place:data_wql.place,
+                    company_intro:data_wql.desc,
+                    company_image:src,
+                    company_content:text
+                },success:function (ds) {
+                    if( ds.statecode == 200 ){
+                            layer.msg('更新成功', {
+                                icon: 1,
+                                time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                            }, function(){
+                                history.go(0);
+                            })
+
+                        }}
+                }
+            )
+
+
+        return false;
+        })
+
+
+
+
+    })
+</script>
+</body>
+</html>

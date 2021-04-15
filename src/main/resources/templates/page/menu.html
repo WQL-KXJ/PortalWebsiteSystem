@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>menu</title>
+    <link rel="stylesheet" th:href="@{layuimini/lib/layui-v2.5.5/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{layuimini/css/public.css}" media="all">
+<style type="text/css">
+    .box ul li{
+        width:160px;
+        height:240px;
+        list-style:none;
+        position:relative;
+        float:left;
+        margin-left:20px;
+        margin-bottom:20px;
+        overflow:hidden;
+    }
+    .box  h2{
+        font-size:18px;
+        color:#fff;
+        text-align:center;
+        padding-top:30px;
+    }
+    .box ul li .deatil {
+        width: 160px;
+        height: 240px;
+        background: rgba(0, 0, 0, 0.7);
+        position: absolute;
+        top: -240px;
+        -webkit-transition: all 0.3s ease;
+    <!-- 适应ie，谷歌，苹果浏览器内核-- > -o-transition: all 0.3 s ease;
+    <!-- 适应Opera浏览器内核-- > -moz-transition: all 0.3 s ease;
+    <!-- 火狐浏览器-- > -ms-transition: all 0.3 s ease;
+    <!-- 微软-- >
+    }
+
+
+    .box ul li .deatil a{
+        font-size:15px;
+        display:block;
+        color:#fff;
+        background-color:#F00;
+        text-decoration:none;
+        width:100px;
+        height:40px;
+        text-align:center;
+        line-height:40px;
+        margin:0 auto;
+    }
+    .box ul li:hover .deatil{
+        top:0;
+    }
+</style>
+</head>
+<body>
+<div class="layuimini-container">
+    <div id="mydiv" class="layuimini-main" style="display: none">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">上传图片：</label>
+                <div class="layui-upload-drag" id="test10">
+                    <i class="layui-icon"></i>
+                    <p>点击上传预览图</p>
+                    <div class="layui-hide" id="uploadDemoView">
+                        <hr>
+                        <img src="" alt="上传成功后渲染" style="max-width: 196px">
+                    </div>
+                </div>
+            </div>
+            <br/><br/>
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="tijiao">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary" >重置</button>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="layuimini-main box">
+        <div class="layui-row">
+        <ul>
+            <li th:each="image_url,item :${images}">
+                <div class="deatil" style="text-align: center;color: whitesmoke"><br/>
+                    <span class="name_image" th:text="${'图片名称：'+image_url.image_name} "></span><br/>
+                    <a class= "wql" href="#">替换</a><br/>
+                    <a class="fq" href="#">删除</a>
+                </div>
+                <img th:src="@{'/layuimini/image_out/'+ ${image_url.image_name}}" width="160px" height="240px" alt=""/>
+                <div style="display: none">
+                    <span class="type" th:text="${image_url.image_type}"></span>
+                    <span class="type_image" th:text="${image_url.image_to}"></span>
+                    <span class="id_image" th:text="${image_url.image_to_id}"></span>
+                </div>
+            </li>
+        </ul>
+
+        </div>
+
+    </div>
+    <div class="layui-col-md-offset5">
+        <h2 style=""></h2>
+    </div>
+</div>
+
+<!--<script th:src="@{js/jquery.min.js}"></script>-->
+<script th:src="@{layuimini/lib/layui-v2.5.5/layui.js}" charset="utf-8"></script>
+<script th:src="@{layuimini/js/lay-config.js}" charset="utf-8"></script>
+<script>
+
+    layui.use(['form', 'layedit','upload','jquery','layer'], function () {
+
+        var $=layui.jquery;
+        var form=layui.form;
+        var upload = layui.upload;
+
+        var image_name_old;
+        var node;
+        var node1;
+        var node2;
+
+
+        $(document).on('click','.wql',function(){
+            image_name_old=$(this).prev().prev().text();
+            node=$(this).parent().next().next().children(".type").text();
+            node1=$(this).parent().next().next().children(".type_image").text();
+            node2=$(this).parent().next().next().children(".id_image").text();
+            layer.open({
+                type: 1,
+                content: $("#mydiv"),
+                area: ['400px', '350px'],
+                resize:false
+            });
+        });
+
+        $(document).on('click','.fq',function(){
+            image_name_old=$(this).prev().prev().prev().prev().text();
+            var src_ch=image_name_old.lastIndexOf("：")+1;
+            var  src_chu=image_name_old.substring(src_ch)
+            node=$(this).parent().next().next().children(".type").text();
+            node1=$(this).parent().next().next().children(".type_image").text();
+            node2=$(this).parent().next().next().children(".id_image").text();
+            layer.open({
+                type: 0,
+                icon:3,
+                skin:"layui-layer-molv",
+                content:"确定要删除吗？",
+                btn:['确定','退出'],
+                yes:function (index,layero) {
+                    if(node!=3){$.ajax({
+                        url:"/image_delete",
+                        type:"post",
+                        dataType:"json",
+                        data:{
+                            image_name:src_chu
+                        },
+                        success:function (dat) {
+                            if( dat.statecode == 200 ){
+                                layer.msg('删除成功！', {
+                                    icon: 1,
+                                    time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                                }, function(){
+                                    history.go(0);
+                                })
+                            }}
+                        })}
+                    if(node==3){
+                        var src_slideshow="/layuimini/image_out/"+src_chu
+                        $.ajax({
+                            url:"/delete_slideshow",
+                            type:"post",
+                            dataType:"json",
+                            data:{
+                                image_path_url_old:src_slideshow
+                            },
+                            success:function (dat) {
+                                if( dat.statecode == 200 ){
+                                    layer.msg('删除成功！', {
+                                        icon: 1,
+                                        time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                                    }, function(){
+                                        history.go(0);
+                                    })
+                                }}
+                        });
+                    }}
+        })})
+
+
+        upload.render({
+            elem: '#test10'
+            ,url: '/upload_image' //改成您自己的上传接口
+            ,done: function(res){
+                $('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', '/layuimini/image_out/'+res.imagefile_path);
+            }
+        });
+
+
+        form.on("submit(tijiao)",function (datas) {
+            var src=$('#uploadDemoView').find("img").attr("src");
+            var index=src.lastIndexOf("/")+1
+            var src_q=src.substring(index);
+
+            var src_chuli=image_name_old.lastIndexOf("：")+1;
+            var  src_chuli_s=image_name_old.substring(src_chuli)
+            var src_slideshow="/layuimini/image_out/"+src_chuli_s
+            if(node!=3){$.ajax({
+                url:"/image_update",
+                type:"post",
+                dataType:"json",
+                data:{
+                    image_name_new:src_q,
+                    image_name_old:src_chuli_s
+                },
+                success:function (dat) {
+                    if( dat.statecode == 200 ){
+                            layer.msg('更新成功', {
+                                icon: 1,
+                                time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                            }, function(){
+                                history.go(0);
+                            })
+                        }}
+
+            })}
+
+            if(node==3){$.ajax({
+
+                url:"/update_slideshow",
+                type:"post",
+                dataType:"json",
+                data:{
+                    image_path_url_new:src,
+                    image_path_url_old:src_slideshow
+                },
+                success:function (dat) {
+                    if( dat.statecode == 200 ){
+                        layer.msg('更新成功', {
+                            icon: 1,
+                            time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                        }, function(){
+                            history.go(0);
+                        })
+                    }}
+
+            })}
+
+            if(node1==1){
+                $.ajax({
+                    url :"/product/updateimage",
+                    type: "post",
+                    dataType:"json",
+                    data:{
+                        product_image:src,
+                        id:node2
+
+                    },
+                    success :function (dat) {
+                        if( dat.statecode == 200 ){
+
+                                layer.msg('添加成功', {
+                                    icon: 1,
+                                    time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                                }, function(){
+                                    history.go(0);
+                                })
+                                }
+                    }
+                })
+            }
+
+            if(node1==2){
+                $.ajax({
+                    url :"/patents/updateimage",
+                    type: "post",
+                    dataType:"json",
+                    data:{
+                        product_image:src,
+                        id:node2
+                    },
+                    success:function (dat) {
+                        if(dat.statecode==200){
+
+                                layer.msg('添加成功', {
+                                    icon: 1,
+                                    time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                                }, function(){
+                                    history.go(0);
+                                })
+
+
+                        }
+                    }})
+            }
+
+            if(node1==3){
+                $.ajax({
+                    url :"/case/updateimage",
+                    type: "post",
+                    dataType:"json",
+                    data:{
+                        product_image:src,
+                        id:node2},
+                    success:function (dat) {
+                        if(dat.statecode==200){
+                                layer.msg('添加成功', {
+                                    icon: 1,
+                                    time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                                }, function(){
+
+                                    history.go(0);
+                                })
+
+                            }
+
+
+                    }})
+            }
+
+
+            if(node1==4){
+                $.ajax({
+                    url :"/solution/updateimage",
+                    type: "post",
+                    dataType:"json",
+                    data:{
+                        product_image:src,
+                        id:node2
+                    },
+                    success:function (dat) {
+                        if(dat.statecode==200){
+
+                                layer.msg('添加成功', {
+                                    icon: 1,
+                                    time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                                }, function(){
+
+                                    history.go(0);
+                                })
+
+                        }
+                    }})
+            }
+
+        })
+
+    });
+</script>
+</body>
+</html>

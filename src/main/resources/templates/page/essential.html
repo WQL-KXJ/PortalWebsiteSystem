@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>修改密码</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/layuimini/lib/layui-v2.5.5/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/layuimini/css/public.css}" media="all">
+        <style>
+         .layui-form-item .layui-input-company {width: auto;padding-right: 10px;line-height: 38px;}
+        .box{
+
+            border: 2px  ;
+            /* 把元素变成定位元素 */
+            position: absolute;
+            /* 元素距离上，左都为50% */
+            left: 50%;
+            top: 50%;
+            /* 让元素的左外边距，上外边距为元素宽高的1/2 注意margin是负距*/
+            margin-top: -150px;
+            margin-left: -200px;
+        }
+
+        </style>
+</head>
+
+<body>
+<div style="display: none">
+    <span id="wql" th:text="${session.username}"></span>
+</div>
+<div class="layuimini-main" id="mydiv" style="display: none">
+    <form class="layui-form" lay-filter="my_filter"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">原用户名：</label>
+            <div class="layui-input-block">
+                <input type="text" name="username_old" placeholder="" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">新用户名：</label>
+            <div class="layui-input-block">
+                <input type="text" name="username_new" placeholder="请输入新用户名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">管理员备注</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" name="acse" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="filter">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+        <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
+    </form>
+</div>
+<div class="layuimini-container">
+    <div class="layuimini-main box">
+        <div class="layui-row">
+
+            <span style="font-size:15px;font-weight:bold">用户名:&nbsp;&nbsp;&nbsp;<span th:text="${session.username}"></span> </span>
+            &nbsp;&nbsp;
+            <button id="but" class="layui-btn layui-btn-sm">更改户名</button>
+            <br/>
+
+        </div>
+        <br/><br/>
+        <div class="layui-row">
+            <span style="font-size:15px;font-weight:bold">密码:&nbsp;&nbsp; &nbsp;<span th:text="${session.password}"></span></span>
+            &nbsp;&nbsp;
+
+            <br/>
+        </div>
+        <br/><br/>
+        <div class="layui-row">
+            <span style="font-size:15px;font-weight:bold">备注:&nbsp;&nbsp; <span th:text="${session.remark}"></span>&nbsp;</span>
+
+            <br/>
+        </div>
+
+    </div>
+</div>
+<script th:src="@{/layuimini/lib/layui-v2.5.5/layui.js}" charset="utf-8"></script>
+<script th:src="@{/layuimini/js/lay-config.js}" charset="utf-8"></script>
+<script>
+    layui.use(['form','miniTab'], function () {
+        var $=layui.jquery;
+        var form = layui.form;
+        var names=$("#wql").text()
+
+        $("#but").click(function () {
+            layer.open({
+                type: 1,
+                content: $("#mydiv"),
+                area:["600px","350px"],
+                skin:"layui-layer-molv"
+            });
+        })
+
+        form.val("my_filter", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
+            "username_old":names
+        })
+        form.on('submit(filter)', function(data){
+            datasd=data.field;
+            $.ajax({
+                url:"/user_username",
+                type:"post",
+                dataType:"json",
+                data:{
+                    username_old: datasd.username_old,
+                    username_new: datasd.username_new,
+                    remark: datasd.acse
+                },
+                success:function (datas) {
+                    if(datas.statecode==200){
+                        layer.msg("更改成功！",{icon:1,time:1500})
+                        window.location.reload()
+                    }else {
+
+                        layer.msg("更改失败！原用户名不存在",{icon:2,time:1500})
+                    }
+                }
+
+
+            })
+            return false;
+        })
+    });
+</script>
+</body>
+</html>

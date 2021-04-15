@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>河北五昊智能科技有限公司</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link th:include="common :: common_head">
+   </head>
+   <body>
+   <div th:replace="common :: common_section"></div>
+      <!-- header section end -->
+      <!-- services section start -->
+      <div class="services_section layout_padding">
+         <div class="container">
+            <h1 class="services_taital">公司产品 </h1>
+
+
+            <div th:each="prod,iter :${product} " class="about_section layout_padding">
+               <div class="container-fluid">
+                  <div class="row">
+                     <div class="col-md-6 ">
+                        <div>
+                           <h2 th:text="${prod.product_name}" class="about_taital">弹道系统</h2>
+                           <p th:text="${prod.product_brief}" class="about_text">There are many me form, by injected humour, or randomised words whic believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All </p>
+                           <div class="readmore_bt"><a href="" class="a_detailpage">了解产品</a></div>
+                        </div>
+                     </div>
+                     <div class="col-md-6 padding_right_0">
+                        <div><img th:src="@{${prod.product_image}}" class="about_img" style="width: 670px;height: 400px"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+
+   <div th:replace="common :: common_end"></div>
+
+   <div th:replace="common :: common_beinan"></div>
+
+   <div th:replace="common :: common_src"></div>
+
+   <script type="application/javascript">
+
+      $(document).on("click",".a_detailpage",function () {
+         var names=$(this).parent().prev().prev().text();
+         $.ajax({
+            url:"/product/show_detailpage",
+            type:"post",
+            dataType:"json",
+            data:{
+               name:names
+            },
+            success:function (data) {
+               window.location.href = "/detailpages_services";
+            }
+         })
+      })
+
+
+   </script>
+
+   </body>
+</html>
+

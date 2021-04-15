@@ -1,0 +1,95 @@
+{
+  "homeInfo": {
+    "title": "首页",
+    "href": ""
+  },
+  "logoInfo": {
+    "title": "五昊智能",
+    "image": "/layuimini/images/logo.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "组件管理",
+      "icon": "fa fa-address-book",
+      "href": "",
+      "target": "_self",
+      "child": [
+        {
+          "title": "主页设置",
+          "href": "",
+          "icon": "fa fa-home",
+          "target": "_self"
+        },
+        {
+          "title": "媒体设置",
+          "href": "",
+          "icon": "fa fa-window-maximize",
+          "target": "_self",
+          "child": [{
+            "title": "图片库",
+            "href": "/image_databse",
+            "icon": "fa fa-list-alt",
+            "target": "_self"
+          },
+            {
+              "title": "布局更改",
+              "href": "/slideshow",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+
+          }]
+        },    {
+          "title": "内容信息",
+          "href": "",
+          "icon": "fa fa-calendar",
+          "target": "_self",
+          "child": [{
+            "title": "产品信息",
+            "href": "/product/product_table",
+            "icon": "fa fa-list-alt",
+            "target": "_self"
+          },
+            {
+              "title": "专利信息",
+              "href": "/patents/patents_table",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            },
+            {
+              "title": "解决方案",
+              "href": "/solution/solution_table",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            },
+            {
+              "title": "成功案例",
+              "href": "/case/case_table",
+              "icon": "fa fa-list-alt",
+              "target": "_self"
+            }
+          ]
+        },  {
+          "title": "管理员添加",
+          "href": "/add_admin",
+          "icon": "fa fa-navicon",
+          "target": "_self"
+        },
+
+        {
+          "title": "产品编辑",
+          "href": "/upload",
+          "icon": "fa fa-edit",
+          "target": "_self"
+        },    {
+          "title": "公司信息",
+          "href": "/company",
+          "icon": "fa fa-snowflake-o",
+          "target": "_self"
+        }
+      ]
+    }
+
+
+  ]
+}

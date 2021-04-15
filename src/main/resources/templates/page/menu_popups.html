@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>产品编辑</title>
+    <link rel="stylesheet" href="../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../lib/jq-module/zyupload/zyupload-1.0.0.min.css" media="all">
+    <link rel="stylesheet" href="../css/public.css" media="all">
+</head>
+<body>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">轮播图片：</label>
+                <div class="layui-upload-drag" id="test10">
+
+                    <p>点击上传预览图</p>
+                    <div class="layui-hide" id="uploadDemoView">
+                        <hr>
+                        <img src="" alt="上传成功后渲染" style="max-width: 196px">
+                    </div>
+                </div>
+            </div>
+            <br/><br/>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">描述：</label>
+                <div class="layui-input-block">
+                    <textarea name="desc" placeholder="请输入内容简介" class="layui-textarea"></textarea>
+                </div>
+            </div>
+
+
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary"><a href="menu.html">退出</a></button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+<script src="../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="../lib/jq-module/zyupload/zyupload-1.0.0.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+    layui.use(['form','upload'], function () {
+        var form=layui.form
+        var upload=layui.upload
+        upload.render({
+            elem: '#test10'
+            ,url: 'https://httpbin.org/post' //改成您自己的上传接口
+            ,done: function(res){
+
+                layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res.files.file);
+                console.log(res)
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

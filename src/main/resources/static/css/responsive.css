@@ -1,0 +1,669 @@
+/*--------------------------------------------------------------------- File Name: responsive.css ---------------------------------------------------------------------*/
+
+
+/*------------------------------------------------------------------- 991px x 768px ---------------------------------------------------------------------*/
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .header-search {
+        padding: 15px 0px;
+    }
+}
+
+
+/*------------------------------------------------------------------- 767px x 599px ---------------------------------------------------------------------*/
+
+@media only screen and (min-width: 599px) and (max-width: 767px) {
+    .logo {
+        text-align: center;
+    }
+    .cart-content-right {
+        padding-bottom: 5px;
+    }
+    .mg {
+        margin: 0px 0px;
+    }
+    .menu-area-main {
+        height: 256px;
+        overflow-y: auto;
+    }
+    .megamenu>.row [class*="col-"] {
+        padding: 0px;
+    }
+    .menu-area-main .megamenu .men-cat {
+        padding: 0px 15px;
+    }
+    .menu-area-main .megamenu .women-cat {
+        padding: 0px 15px;
+    }
+    .menu-area-main .megamenu .el-cat {
+        padding: 0px 15px;
+    }
+    .mean-container .mean-nav ul li a.mean-expand {
+        height: 19px;
+    }
+    .category-box.women-box {
+        display: none;
+    }
+    .cart-box {
+        display: inline-block;
+        margin: 0px 30px;
+    }
+    .wish-box {
+        float: none;
+        margin: 0px 30px;
+        display: inline-block;
+    }
+    .menu-add {
+        display: none;
+    }
+    .category-box {
+        display: none;
+    }
+    .mean-container .mean-nav ul li ol {
+        padding: 0px;
+    }
+    .mean-container .mean-nav ul li a {
+        padding: 10px 20px;
+        width: 94.8%;
+    }
+    .mean-container .mean-nav ul li li a {
+        width: 92%;
+        padding: 1em 4%;
+    }
+    .mean-container .mean-nav ul li li li a {
+        width: 100%;
+    }
+    .header-search {
+        padding: 15px 0px;
+    }
+    #collapseFilter.d-md-block {
+        padding: 30px 0px;
+    }
+}
+
+
+/*------------------------------------------------------------------- 599px x 280px ---------------------------------------------------------------------*/
+
+@media only screen and (min-width: 280px) and (max-width: 599px) {
+    .cart-content-right {
+        padding-bottom: 5px;
+    }
+    .megamenu>.row [class*="col-"] {
+        padding: 0px;
+    }
+    .menu-area-main .megamenu .men-cat {
+        padding: 0px 15px;
+    }
+    .menu-area-main .megamenu .women-cat {
+        padding: 0px 15px;
+    }
+    .menu-area-main .megamenu .el-cat {
+        padding: 0px 15px;
+    }
+    .mean-container .mean-nav ul li a {
+        padding: 1em 4%;
+        width: 92%;
+    }
+    .mean-container .mean-nav ul li li a {
+        width: 90%;
+        padding: 1em 5%;
+    }
+    .mean-container .sub-full.megamenu-categories ol li a {
+        padding: 5px 0px;
+        text-transform: capitalize;
+        width: 100%;
+    }
+    .megamenu .sub-full.megamenu-categories .women-box .banner-up-text a {
+        width: auto;
+        border: none;
+        float: none;
+    }
+    .menu-area-main {
+        height: 45px;
+        overflow-y: auto;
+    }
+    .mean-container .mean-nav ul li a.mean-expand {
+        top: 0;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .header_section {
+        padding: 0px;
+        background-size: cover;
+    }
+    .banner_text {
+        width: 100%;
+    }
+    .about_taital_main {
+        padding-left: 25px;
+        padding-top: 40px;
+    }
+    .about_text {
+        padding-top: 0px;
+        font-size: 14px;
+    }
+    .readmore_bt {
+        margin-top: 30px;
+    }
+    .blog_section {
+        background-size: 100% 100%;
+        padding-bottom: 220px;
+        padding-top: 160px;
+    }
+    .play_icon_main {
+        margin-top: 50px;
+    }
+    .client_taital {
+        padding-top: 0px;
+    }
+    .box_left {
+        width: 60%;
+    }
+    .box_right {
+        width: 40%;
+    }
+    .lorem_text {
+        padding: 100px 40px;
+    }
+    .client_taital_left {
+        width: 50%;
+        float: left;
+    }
+    .client_taital_right {
+        width: 50%;
+        float: left;
+        padding-left: 20px;
+    }
+    .client_section_2 {
+        padding: 40px 30px;
+    }
+    .client_name {
+        padding-top: 25px;
+    }
+    .choose_section {
+        padding-top: 0px;
+    }
+    .choose_text {
+        width: 100%;
+    }
+    .footer_section {
+        padding-top: 270px;
+        background-size: cover;
+        padding-bottom: 30px;
+    }
+    .input_btn_main {
+        width: 60%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .header_section {
+        padding: 0px;
+        background-size: cover;
+    }
+    .banner_text {
+        width: 100%;
+    }
+    .about_taital_main {
+        padding-left: 25px;
+        padding-top: 0px;
+    }
+    .about_text {
+        padding-top: 0px;
+        font-size: 14px;
+    }
+    .readmore_bt {
+        margin-top: 30px;
+    }
+    .about_img {
+        height: 340px;
+    }
+    .blog_section {
+        background-size: 100% 100%;
+        padding-bottom: 220px;
+        padding-top: 160px;
+    }
+    .play_icon_main {
+        margin-top: 50px;
+    }
+    .client_taital {
+        padding-top: 0px;
+    }
+    .box_left {
+        width: 60%;
+    }
+    .box_right {
+        width: 40%;
+    }
+    .lorem_text {
+        padding: 30px 10px;
+    }
+    .client_taital_left {
+        width: 50%;
+        float: left;
+    }
+    .client_taital_right {
+        width: 50%;
+        float: left;
+        padding-left: 20px;
+    }
+    .client_section_2 {
+        padding: 40px 30px;
+    }
+    .client_name {
+        padding-top: 25px;
+    }
+    .choose_section {
+        padding-top: 0px;
+    }
+    .choose_text {
+        width: 100%;
+    }
+    .footer_section {
+        padding-top: 230px;
+        background-size: cover;
+        padding-bottom: 30px;
+    }
+    .input_btn_main {
+        width: 90%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .navbar-light .navbar-toggler {
+        color: rgba(0, 0, 0, .5);
+        border-color: transparent;
+    }
+    #main_slider a.carousel-control-prev {
+        position: absolute;
+        left: 175px;
+        top: 90%;
+        display: none;
+    }
+    #main_slider a.carousel-control-next {
+        position: absolute;
+        left: 236px;
+        top: 90%;
+        display: none;
+    }
+    .header_section {
+        background-image: url(../images/mobile-bg.png);
+        background-size: cover;
+        padding: 0px;
+    }
+    .navbar-toggler {
+        background-color: #ffffff;
+    }
+    .logo {
+        display: none;
+    }
+    .menu_main {
+        display: none;
+    }
+    .logo_mobile {
+        width: 40%;
+        padding: 0px;
+        text-align: left;
+    }
+    .mobile_menu {
+        display: initial;
+    }
+    .banner_taital {
+        font-size: 50px;
+    }
+    .bg-light {
+        background-color: transparent !important;
+    }
+    .header_main {
+        padding: 0px;
+    }
+    .navbar-expand-lg .navbar-nav .nav-link {
+        color: #ffffff;
+        text-align: center;
+        background: transparent;
+        width: 100%;
+        margin: 10px 0px;
+        border-radius: 30px;
+    }
+    .nav-item {
+        position: relative;
+        width: 100%;
+    }
+    .navbar-light .navbar-nav .nav-link:focus,
+    .navbar-light .navbar-nav .nav-link:hover {
+        color: #ffffff;
+        background: blue;
+    }
+    .navbar-light .navbar-nav .active>.nav-link,
+    .navbar-light .navbar-nav .nav-link.active,
+    .navbar-light .navbar-nav .nav-link.show,
+    .navbar-light .navbar-nav .show>.nav-link {
+        color: #ffffff;
+        background: red;
+    }
+    .banner_text {
+        width: 100%;
+    }
+    .banner_section {
+        padding: 50px 0px;
+    }
+    .services_section {
+        padding: 50px 0px;
+    }
+    .services_section_2 {
+        margin-top: 30px;
+    }
+    .services_img {
+        margin-top: 40px;
+    }
+    .about_section {
+        padding: 50px 0px;
+    }
+    .about_taital_main {
+        padding-top: 0px;
+        padding-left: 0px;
+    }
+    .about_text {
+        font-size: 15px;
+    }
+    .about_img {
+        padding-top: 30px;
+    }
+    .padding_right_0 {
+        padding-right: 15px;
+    }
+    .blog_section {
+        background-image: url(../images/blog-mobile-bg.png);
+        background-size: cover;
+        padding: 50px 0px;
+    }
+    .blog_text {
+        width: 100%;
+    }
+    .play_icon_main {
+        margin-top: 40px;
+    }
+    .play_icon {
+        width: 145px;
+    }
+    .client_section_2 {
+        padding: 30px 20px;
+        margin-top: 50px;
+    }
+    .client_main {
+        display: inherit;
+    }
+    .box_left {
+        width: 100%;
+    }
+    .lorem_text {
+        padding: 30px 10px;
+        font-size: 15px;
+    }
+    .box_right {
+        width: 100%;
+    }
+    .client_name {
+        padding-top: 25px;
+    }
+    .client_taital_right {
+        padding-left: 20px;
+    }
+    .choose_taital {
+        font-size: 30px;
+    }
+    .choose_section {
+        padding: 50px 0px;
+    }
+    .choose_text {
+        width: 100%;
+        font-size: 15px;
+    }
+    .newsletter_box {
+        display: initial;
+    }
+    .let_text {
+        font-size: 30px;
+        text-align: center;
+    }
+    .getquote_bt {
+        margin: 0 auto;
+    }
+    .footer_section {
+        background-image: url(../images/footer-mobile-bg.png);
+        background-size: cover;
+        padding: 50px 0px;
+    }
+    .input_btn_main {
+        width: 100%;
+        display: inherit;
+        background-color: transparent !important;
+    }
+    .subscribe_bt {
+        margin: 0 auto;
+        text-align: center;
+        width: 200px;
+        float: initial;
+    }
+    .subscribe_bt a {
+        width: 100%;
+        background-color: #ffffff;
+        margin-top: 50px;
+        border-radius: 40px;
+        margin-bottom: 50px;
+    }
+    .subscribe_bt a:hover {
+        color: #000;
+        background-color: #ffffff;
+    }
+    .social_icon {
+        display: inline-block;
+    }
+    .contact_taital {
+        font-size: 30px;
+    }
+    .email_text {
+        width: 100%;
+        padding-top: 90px;
+    }
+}
+
+@media (max-width: 575px) {
+    .navbar-light .navbar-toggler {
+        color: rgba(0, 0, 0, .5);
+        border-color: transparent;
+    }
+    #main_slider a.carousel-control-prev {
+        position: absolute;
+        left: 175px;
+        top: 90%;
+        display: none;
+    }
+    #main_slider a.carousel-control-next {
+        position: absolute;
+        left: 236px;
+        top: 90%;
+        display: none;
+    }
+    .header_section {
+        background-image: url(../images/mobile-bg.png);
+        background-size: cover;
+        padding: 0px; 
+    }
+    .navbar-toggler {
+        background-color: #ffffff;
+    }
+    .logo {
+        display: none;
+    }
+    .menu_main {
+        display: none;
+    }
+    .logo_mobile {
+        width: 40%;
+        padding: 0px;
+    }
+    .mobile_menu {
+        display: initial;
+    }
+    .banner_taital {
+        font-size: 50px;
+    }
+    .bg-light {
+        background-color: transparent !important;
+    }
+    .header_main {
+        padding: 0px;
+    }
+    .navbar-expand-lg .navbar-nav .nav-link {
+        color: #ffffff;
+        text-align: center;
+        background: transparent;
+        width: 100%;
+        margin: 10px 0px;
+        border-radius: 30px;
+    }
+    .nav-item {
+        position: relative;
+        width: 100%;
+    }
+    .navbar-light .navbar-nav .nav-link:focus,
+    .navbar-light .navbar-nav .nav-link:hover {
+        color: #ffffff;
+        background: red;
+    }
+    .navbar-light .navbar-nav .active>.nav-link,
+    .navbar-light .navbar-nav .nav-link.active,
+    .navbar-light .navbar-nav .nav-link.show,
+    .navbar-light .navbar-nav .show>.nav-link {
+        color: #ffffff;
+        background: red;
+    }
+    .banner_text {
+        width: 100%;
+    }
+    .banner_section {
+        padding: 50px 0px;
+    }
+    .services_section {
+        padding: 50px 0px;
+    }
+    .services_section_2 {
+        margin-top: 30px;
+    }
+    .services_img {
+        margin-top: 40px;
+    }
+    .about_section {
+        padding: 50px 0px;
+    }
+    .about_taital_main {
+        padding-top: 0px;
+        padding-left: 0px;
+    }
+    .about_text {
+        font-size: 15px;
+    }
+    .about_img {
+        padding-top: 30px;
+    }
+    .padding_right_0 {
+        padding-right: 15px;
+    }
+    .blog_section {
+        background-image: url(../images/blog-mobile-bg.png);
+        background-size: cover;
+        padding: 50px 0px;
+    }
+    .blog_text {
+        width: 100%;
+    }
+    .play_icon_main {
+        margin-top: 40px;
+    }
+    .play_icon {
+        width: 145px;
+    }
+    .client_section_2 {
+        padding: 30px 20px;
+        margin-top: 50px;
+    }
+    .client_main {
+        display: inherit;
+    }
+    .box_left {
+        width: 100%;
+    }
+    .lorem_text {
+        padding: 30px 10px;
+        font-size: 15px;
+    }
+    .box_right {
+        width: 100%;
+    }
+    .client_name {
+        padding-top: 25px;
+    }
+    .client_taital_right {
+        padding-left: 20px;
+    }
+    .choose_taital {
+        font-size: 30px;
+    }
+    .choose_section {
+        padding: 50px 0px;
+    }
+    .choose_text {
+        width: 100%;
+        font-size: 15px;
+    }
+    .newsletter_box {
+        display: initial;
+    }
+    .let_text {
+        font-size: 30px;
+        text-align: center;
+    }
+    .getquote_bt {
+        margin: 0 auto;
+    }
+    .footer_section {
+        background-image: url(../images/footer-mobile-bg.png);
+        background-size: cover;
+        padding: 50px 0px;
+    }
+    .input_btn_main {
+        width: 100%;
+        display: inherit;
+        background-color: transparent !important;
+    }
+    .subscribe_bt {
+        margin: 0 auto;
+        text-align: center;
+        width: 200px;
+        float: initial;
+    }
+    .subscribe_bt a {
+        width: 100%;
+        background-color: #ffffff;
+        margin-top: 50px;
+        border-radius: 40px;
+        margin-bottom: 50px;
+    }
+    .subscribe_bt a:hover {
+        color: #000;
+        background-color: #ffffff;
+    }
+    .social_icon {
+        display: inline-block;
+    }
+    .contact_taital {
+        font-size: 28px;
+    }
+    .email_text {
+        width: 100%;
+        padding-top: 90px;
+    }
+
+}
