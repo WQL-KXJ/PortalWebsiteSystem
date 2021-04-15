@@ -1,6 +1,6 @@
 PortalWebsiteSystem
-#**企业门户系统**
-##**使用技术**
+##企业门户系统
+##使用技术
 ###后端：springboot，mybatisplus
 ###数据库：redis，mysql
 ###前端：layui
