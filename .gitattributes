@@ -1,4 +1,5 @@
 *.java linguist-language=Java*.md 
+*.js linguist-language=Vue
 linguist-language=Java*.yml 
 linguist-language=Java*.html 
 linguist-language=Java*.js
