@@ -1,4 +1,3 @@
-# enterprisemanagementsystem
 ## 企业门户网站，基于Springboot和layui前后端分离
 ### 使用技术：
 #### 后端框架：SpringBoot，Mybatisplus
