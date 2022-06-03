@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/wuhao_database?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/kxj_database?useUnicode=true&characterEncoding=utf8
     username: root
     password: 123
   servlet:
