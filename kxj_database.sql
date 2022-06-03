@@ -134,7 +134,6 @@ CREATE TABLE `product_table`  (
 -- Records of product_table
 -- ----------------------------
 INSERT INTO `product_table` VALUES (1, 'WQL-空想家', '啦啦啦啦啦', '/layuimini/image_out/48725107-ca08-4c91-9005-8e8b4842bc37.jpg', '啦啦啦啦啦啦啦啦');
-
 -- ----------------------------
 -- Table structure for slideshow
 -- ----------------------------
